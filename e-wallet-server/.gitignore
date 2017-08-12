@@ -1,0 +1,31 @@
+.gradle
+/build/
+!gradle/wrapper/gradle-wrapper.jar
+e-wallet-server-application/build
+e-wallet-server-data/build
+e-wallet-server-services/build
+e-wallet-server-application/out
+e-wallet-server-data/out
+e-wallet-server-services/out
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/

@@ -1,0 +1,4 @@
+include 'e-wallet-server-data'
+include 'e-wallet-server-application'
+include 'e-wallet-server-services'
+
