@@ -1,5 +1,6 @@
 package com.e_wallet.entity.user;
 
+import com.e_wallet.entity.group.Group;
 import com.e_wallet.entity.role.Role;
 import com.e_wallet.util.DbObjectNameUtil;
 import com.e_wallet.util.enums.yes_no.YesNoEnum;
@@ -8,6 +9,7 @@ import com.e_wallet.util.enums.yes_no.YesNoEnumConverter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Arrays;
+import java.util.Set;
 
 /**
  * Created by Redpike
@@ -59,6 +61,13 @@ public class User {
     @Convert(converter = YesNoEnumConverter.class)
     @Column(name = "deleted")
     private YesNoEnum deleted;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = DbObjectNameUtil.GROUPS_TABLE,
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "group_id")}
+    )
+    private Set<Group> groupSet;
 
     public Integer getId() {
         return id;
@@ -148,6 +157,14 @@ public class User {
         this.deleted = deleted;
     }
 
+    public Set<Group> getGroupSet() {
+        return groupSet;
+    }
+
+    public void setGroupSet(Set<Group> groupSet) {
+        this.groupSet = groupSet;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -163,11 +180,11 @@ public class User {
         if (firstName != null ? !firstName.equals(user.firstName) : user.firstName != null) return false;
         if (lastName != null ? !lastName.equals(user.lastName) : user.lastName != null) return false;
         if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (role != null ? !role.equals(user.role) : user.role != null)
-            return false;
+        if (role != null ? !role.equals(user.role) : user.role != null) return false;
         if (!Arrays.equals(avatar, user.avatar)) return false;
         if (blocked != user.blocked) return false;
-        return deleted == user.deleted;
+        if (deleted != user.deleted) return false;
+        return groupSet != null ? groupSet.equals(user.groupSet) : user.groupSet == null;
     }
 
     @Override
@@ -183,6 +200,7 @@ public class User {
         result = 31 * result + Arrays.hashCode(avatar);
         result = 31 * result + (blocked != null ? blocked.hashCode() : 0);
         result = 31 * result + (deleted != null ? deleted.hashCode() : 0);
+        result = 31 * result + (groupSet != null ? groupSet.hashCode() : 0);
         return result;
     }
 
@@ -200,6 +218,7 @@ public class User {
                 ", avatar=" + Arrays.toString(avatar) +
                 ", blocked=" + blocked +
                 ", deleted=" + deleted +
+                ", groupSet=" + groupSet +
                 '}';
     }
 }
