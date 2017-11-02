@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
-import Home from '../home'
-import About from '../about'
+import Home from '../../containers/home/HomeContainer.jsx'
+import About from '../about/About.jsx'
 
 const App = () => (
     <div>
@@ -15,5 +15,5 @@ const App = () => (
             <Route exact path="/about-us" component={About} />
         </main>
     </div>
-)
+);
 export default App
