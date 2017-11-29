@@ -10,5 +10,5 @@ public class RestUtil {
     /**
      * User API
      */
-    public static final String USER_API = API + "user/";
+    public static final String USER_API = API + "user";
 }
