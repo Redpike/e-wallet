@@ -18,7 +18,8 @@ repositories {
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
-    compile('mysql:mysql-connector-java')
+//    compile('mysql:mysql-connector-java')
+    compile project(':e-wallet-server-services')
     compile('org.apache.httpcomponents:httpclient:4.5.3')
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')

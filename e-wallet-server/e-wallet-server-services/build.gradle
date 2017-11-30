@@ -19,6 +19,8 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile project(':e-wallet-server-data')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
