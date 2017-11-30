@@ -1,12 +1,11 @@
 package com.e_wallet.repository.user;
 
 import com.e_wallet.entity.user.User;
-import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Service
-public interface UserService
+
+public interface UserRepository
 //        extends JpaRepository<User, Integer>
 {
 

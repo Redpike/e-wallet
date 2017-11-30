@@ -19,9 +19,6 @@ public class UserRestController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserRestController.class);
 
-//    @Autowired
-//    private UserService userService;
-
     private static List<User> userList;
     private static int maxId = 0;
 
@@ -90,14 +87,13 @@ public class UserRestController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
-    @RequestMapping(path = "/{username}/{newUsername}", method = RequestMethod.PUT)
-    public ResponseEntity<User> updateUser(@PathVariable("username") String username, @PathVariable("newUsername") String newUsername) {
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<User> updateUser(@RequestBody User editedUser) {
         LOGGER.info("Editing user.");
         for (User user : userList)
-            if (user.getUsername().equalsIgnoreCase(username)) {
-                User newUser = createTempUser(user.getId(), newUsername);
-                Collections.replaceAll(userList, user, newUser);
-                return new ResponseEntity<>(newUser, HttpStatus.OK);
+            if (user.getId().equals(editedUser.getId())) {
+                Collections.replaceAll(userList, user, editedUser);
+                return new ResponseEntity<>(editedUser, HttpStatus.OK);
             }
 
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
