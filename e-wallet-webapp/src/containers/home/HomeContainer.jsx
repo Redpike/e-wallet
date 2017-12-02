@@ -1,8 +1,6 @@
 import React, {PureComponent} from "react";
-import {push} from "react-router-redux";
-import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import {decrement, decrementAsync, increment, incrementAsync} from "../../modules/counter";
+import {getAllUsers} from "../../redux/home/home"
 import Home from "../../components/home/Home.jsx";
 
 class HomeContainer extends PureComponent {
@@ -13,18 +11,14 @@ class HomeContainer extends PureComponent {
     }
 }
 
-const mapStateToProps = state => ({
-    count: state.counter.count,
-    isIncrementing: state.counter.isIncrementing,
-    isDecrementing: state.counter.isDecrementing
+const mapStateToProps = ({home}) => ({
+    users: home.users
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-    increment,
-    incrementAsync,
-    decrement,
-    decrementAsync,
-    changePage: () => push('/about-us')
-}, dispatch);
+const mapDispatchToProps = dispatch => ({
+    getAllUsers: (callback) => {
+        dispatch(getAllUsers(callback));
+    }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer)
