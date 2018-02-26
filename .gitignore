@@ -4,6 +4,8 @@
 *.iws
 *.iml
 *.ipr
+*.png
+Diagrams/*.png
 
 e-wallet-server-application/out/
 e-wallet-server/e-wallet-server-application/out/
